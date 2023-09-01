@@ -25,7 +25,7 @@ def text_to_sequence(text, cleaner_names):
   ################### g2p select ###################
   if cleaner_names[0] == "prosody":
     clean_text = pyopenjtalk_g2p_prosody(text)
-    print(clean_text)
+    #print(clean_text)
   else:
     clean_text = pyopenjtalk_g2p(text)
   ##################################################
@@ -45,7 +45,7 @@ def infer_g2p(text, cleaner_names):
   ################### g2p select ###################
   if cleaner_names[0] == "prosody":
     clean_text = pyopenjtalk_g2p_prosody(text)
-    print(clean_text)
+    #print(clean_text)
   else:
     clean_text = pyopenjtalk_g2p(text)
   ##################################################
