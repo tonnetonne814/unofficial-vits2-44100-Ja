@@ -23,8 +23,11 @@ def text_to_sequence(text, cleaner_names):
   #print(text)
 
   ################### g2p select ###################
-  #clean_text = pyopenjtalk_g2p_prosody(text[0])
-  clean_text = pyopenjtalk_g2p(text)
+  if cleaner_names[0] == "prosody":
+    clean_text = pyopenjtalk_g2p_prosody(text)
+    print(clean_text)
+  else:
+    clean_text = pyopenjtalk_g2p(text)
   ##################################################
 
 
@@ -39,9 +42,13 @@ def text_to_sequence(text, cleaner_names):
 def infer_g2p(text, cleaner_names):
   sequence = []
 
-  #clean_text = _clean_text(text, cleaner_names)
-  #print(text)
-  clean_text = pyopenjtalk_g2p_prosody(text)
+  ################### g2p select ###################
+  if cleaner_names[0] == "prosody":
+    clean_text = pyopenjtalk_g2p_prosody(text)
+    print(clean_text)
+  else:
+    clean_text = pyopenjtalk_g2p(text)
+  ##################################################
   for symbol in clean_text:
     symbol_id = _symbol_to_id[symbol]
     sequence += [symbol_id]

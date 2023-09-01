@@ -90,7 +90,6 @@ def inference(args):
                             length_scale=length_scale)[0][0,0].data.cpu().float().numpy()
 
     while True:
-
         # get text
         text = input("Enter text. ==> ")
         if text=="":
@@ -103,7 +102,12 @@ def inference(args):
 
         # required_grad is False
         with torch.inference_mode():
-            stn_phn = pyopenjtalk_g2p(text)
+            if hps.data.text_cleaners[0] == "prosody":
+                stn_phn = pyopenjtalk_g2p_prosody(text)
+                print(stn_phn)
+            else:
+                stn_phn = pyopenjtalk_g2p(text)
+                print(stn_phn)
             stn_tst = get_text(stn_phn, hps)
 
             # generate audio
@@ -153,12 +157,12 @@ if __name__ == "__main__":
     parser.add_argument('--config',
                         type=str,
                         #required=True,
-                        default="./logs/NoNameModel/config.json" ,    
+                        default="./vits2_pyopenjtalk_prosody/config.json" ,    
                         help='Path to configuration file')
     parser.add_argument('--model_path',
                         type=str,
                         #required=True,
-                        default="./logs/NoNameModel/G_5000.pth",
+                        default="./vits2_pyopenjtalk_prosody/G_87000.pth",
                         help='Path to checkpoint')
     parser.add_argument('--is_save',
                         type=str,
