@@ -92,6 +92,7 @@ Anacondaによる実行環境構築を想定する。
 | train | finetune_model_dir| ファインチューニング用のcheckpointsが入っているフォルダ   |
 | data  | training_files    | 学習用filelistのテキストパス                              |
 | data  | validation_files  | 検証用filelistのテキストパス                              |
+| data  | text_cleaners     | g2pの選択 pyopenjtalk=[""], pyopenjtalk_prosody=["prosody"]|
 
 ## 4. 学習
 次のコマンドを入力することで、学習を開始する。
@@ -131,7 +132,7 @@ python3 inference.py --config ./path/to/config.json --model_path ./path/to/G_mod
 ファインチューニングを行う場合は、生成器モデルのcheckpointをG_finetune.pth、識別器モデルのcheckpointsをD_finetune.pth、DURモデルのcheckpointをDUR_finetune.pthに名前を変更し、config.jsonで記述しているfinetune_model_dirフォルダ内へと配置する。その後、config.json内のis_finetuneをtrueに変更した後、「4. 学習」のコマンドで学習を開始することで、ファインチューニングを行うことが出来ます。
 
 ## 事前学習モデル
-- 追加予定
+- [JSUT 87k steps pyopenjtalk_prosody](https://drive.google.com/file/d/1mO4uyztBejxsBow0Rv7OBr8sakvmMku5/view?usp=sharing)
 
 ## 参考文献
 - https://github.com/p0p4k/vits2_pytorch
